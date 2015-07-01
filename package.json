@@ -2,9 +2,9 @@
   "name": "xv6-easy",
   "version": "1.0.0",
   "description": "",
-  "main": "all.js",
+  "main": "index.js",
   "scripts": {
-  	"start": "node all",
+  	"start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
