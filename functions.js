@@ -1,37 +1,34 @@
-var fs = require('fs');
-var output = 'out.html';
-var input = 'out.html';
-var out = "";
-var fns = [];
+var Promise = require('bluebird');
 
-var fileContent = fs.readFileSync(input, 'utf-8')
+module.exports = function (input) {
+  var output = input;
+  var fns = [];
+  return new Promise(function (resolve) {
 
-var re = /\n([a-zA-Z0-9\_]+)\(/g;
-while ((res = re.exec(fileContent)) !== null) {
-  fns.push(res[1]);
-}
+    var re = /\n([a-zA-Z0-9\_]+)\(/g;
+    while ((res = re.exec(output)) !== null) {
+      fns.push(res[1]);
+    }
 
-re = /\n([a-zA-Z0-9\_]+):/g;
-while ((res = re.exec(fileContent)) !== null) {
-  fns.push(res[1]);
-}
-
-out = fileContent;
-
-fns.map(function (fn) {
-  var re = new RegExp("\\n"+fn+"\\(","g")
-  out = out.replace(re, "\n<a name='F"+fn+"'>"+fn+"</a>(");
-});
-fns.map(function (fn) {
-  var re = new RegExp("\\n"+fn+":","g")
-  out = out.replace(re, "\n<a name='F"+fn+"'>"+fn+"</a>:");
-});
-
-fns.map(function (fn) {
-  var re = new RegExp("\\b"+fn+"\\b","g")
-  out = out.replace(re, "<a class='func-ref' href='#F"+fn+"'>"+fn+"</a>");
-});
+    re = /\n([a-zA-Z0-9\_]+):/g;
+    while ((res = re.exec(output)) !== null) {
+      fns.push(res[1]);
+    }
 
 
+    fns.map(function (fn) {
+      var re = new RegExp("\\n" + fn + "\\(", "g");
+      output = output.replace(re, "\n<a name='F" + fn + "'>" + fn + "</a>(");
+    });
+    fns.map(function (fn) {
+      var re = new RegExp("\\n" + fn + ":", "g");
+      output = output.replace(re, "\n<a name='F" + fn + "'>" + fn + "</a>:");
+    });
 
-fs.writeFileSync(output, out, 'utf8');
+    fns.map(function (fn) {
+      var re = new RegExp("\\b" + fn + "\\b", "g");
+      output = output.replace(re, "<a class='func-ref' href='#F" + fn + "'>" + fn + "</a>");
+    });
+    resolve(output);
+  });
+};
