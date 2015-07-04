@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var Promise = require('bluebird');
-var settings = require('./settings');
+var settings = require('./../settings');
 
 module.exports = function () {
   return new Promise(function (resolve) {

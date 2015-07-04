@@ -1,6 +1,6 @@
 var fs = require('fs');
 var Promise = require('bluebird');
-var settings = require('./settings');
+var settings = require('./../settings');
 
 module.exports = function (input) {
   var output = input;
