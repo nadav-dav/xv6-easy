@@ -1,7 +1,7 @@
 # xv6-easy
 A Simple html file with MIT's XV6-rev7 code - with links and colors
 
-[Click here to see how it looks](http://htmlpreview.github.io/?https://raw.githubusercontent.com/nadav-dav/xv6-easy/master/xv6.html)
+## [Click here to see how it looks](http://htmlpreview.github.io/?https://raw.githubusercontent.com/nadav-dav/xv6-easy/master/xv6.html)
 
 ### How to build
 .1. You are going to need xv6-rev7 source code, you can get it here:
