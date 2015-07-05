@@ -9,11 +9,11 @@ settings.template = fs.readFileSync('./template.html','utf8');
 require('./stages/concat')()
   .then(require('./stages/html'))
   .then(require('./stages/files'))
+  .then(require('./stages/comments'))
   .then(require('./stages/defines'))
   .then(require('./stages/functions'))
   .then(require('./stages/structs'))
   .then(require('./stages/reserved'))
-  .then(require('./stages/comments'))
   .then(function (output){
     console.log(output);
     fs.writeFileSync('xv6.html', output, 'utf8');
